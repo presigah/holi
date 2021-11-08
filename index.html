@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Eventtia</title>
+	<link rel="stylesheet" href="./style.css">
+	<style type="text/css">
+		html {
+			height: 100%;
+			font-family: sans-serif;
+		}
+
+		body {
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.evt-container {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			position: relative;
+		}
+
+		.evt-container .evt-videoContainer {
+			display: flex;
+			position: relative;
+			width: 100%;
+		}
+
+		.evt-videoContainer video#evt-video {
+			object-fit: fill;
+		}
+
+		.evt-letrero {
+			width: 9.6%;
+			top: 11.3%;
+			width: 9.8%;
+			height: 30.8%;
+			display: flex;
+		}
+
+		.evt-letrero.evt-izq {
+			left: 22.3%;
+			width: 10.4%;
+		}
+
+		.evt-letrero.evt-der {
+			right: 22.4%;
+		}
+
+		#evt-video {
+			position: relative;
+			display: block;
+		}
+
+		.evt-video-central {
+			width: 17.2%;
+			height: 17.5%;
+			top: 27.4%;
+			left: 42%;
+		}
+
+		/* POSCICIÓN CON RESPECTO AL evt-videoContainer */
+		.evt-abs {
+			position: absolute;
+		}
+
+		.evt-links {
+			background: rgba(0, 0, 0, .0);
+			transition: background .25s ease;
+		}
+
+		.evt-links:hover {
+			background: rgba(0, 0, 0, .25);
+		}
+
+		.evt-links:hover span {
+			color: #ddd;
+		}
+
+		.evt-links span {
+			display: flex;
+			justify-content: center;
+			margin-top: 4px;
+			font-weight: bold;
+			color: #FFF;
+			text-transform: uppercase;
+		}
+
+		.evt-central-pos span {
+			font-size: 1rem;
+			white-space: -moz-pre-wrap;
+			/* Firefox */
+			white-space: -o-pre-wrap;
+			/* Opera */
+			white-space: pre-wrap;
+			/* Chrome */
+			word-wrap: break-word;
+			/* IE */
+			word-break: unset;
+			word-wrap: unset;
+			overflow-wrap: unset;
+			-webkit-hyphens: unset;
+			-moz-hyphens: unset;
+			-ms-hyphens: unset;
+			hyphens: unset;
+		}
+
+		.evt-left-pos span,
+		.evt-right-pos span {
+			font-size: .9rem;
+		}
+
+		.evt-central-pos {
+			width: 17.2%;
+			height: 16.4%;
+			top: 54%;
+			left: 41.8%;
+		}
+
+		.evt-left-pos {
+			width: 14.2%;
+			height: 13.4%;
+			top: 54.8%;
+			left: 20.4%;
+		}
+
+		.evt-right-pos {
+			width: 14.1%;
+			height: 13.5%;
+			top: 54.8%;
+			right: 20.3%;
+		}
+
+		.evt-banner-img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.evt-left-sponsor {
+			width: 6.6%;
+			top: 6.4%;
+			height: 15%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			right: 49.8%;
+		}
+
+		.evt-left-sponsor img {
+			transform: rotateY(-10deg) rotateX(20deg) rotateZ(-12deg);
+		}
+
+		.evt-right-sponsor img {
+			transform: rotateY(10deg) rotateX(20deg) rotateZ(12deg);
+		}
+
+		.evt-left-sponsor img,
+		.evt-right-sponsor img {
+			width: 100%;
+			height: auto;
+		}
+
+		.evt-right-sponsor {
+			width: 6.6%;
+			height: 15%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			top: 6.4%;
+			left: 51.4%;
+		}
+
+		.evt-icon {
+			width: 2.6%;
+			height: 4.4%;
+			left: 27.5%;
+			bottom: 8.2%;
+		}
+
+		.evt-audiobtn:nth-child(1) {
+			right: 50px;
+			/*90px for 3 btns, 50px for 2 and 5px for one*/
+			bottom: 6px;
+		}
+
+		.evt-audiobtn:nth-child(2) {
+			right: 5px;
+			/*50px for 3 btns, 5px for 2*/
+			bottom: 6px;
+		}
+
+		.evt-audiobtn:nth-child(3) {
+			right: 5px;
+			/*5px for 3 btns*/
+			bottom: 6px;
+		}
+
+		.evt-audiobtn {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			padding: 5px;
+			border-radius: 6px;
+			background: #ECECEC;
+			transition: background .4s ease;
+			border: 1px solid #24a0ed;
+		}
+
+		.evt-audiobtn:hover {
+			background: #24a0ed !important;
+		}
+
+		.evt-audiobtn:hover svg {
+			color: #333;
+		}
+
+		.evt-icon svg,
+		.evt-audiobtn svg {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			color: magenta;
+			cursor: pointer;
+			transition: color .4s ease;
+		}
+
+		.evt-audiobtn svg {
+			transition: color .4s ease;
+			width: calc(100% - 10px);
+			height: calc(100% - 10px);
+			top: 5px;
+			left: 5px;
+			color: #000;
+		}
+
+		.evt-icon svg:hover {
+			color: #000;
+		}
+
+		.evt-info {
+			width: 100vw;
+			height: 100vh;
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(0, 0, 0, .3);
+			opacity: 0;
+		}
+
+		#evt-controls {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+
+		.evt-info.open {
+			display: flex;
+			opacity: 1;
+			align-items: center;
+			justify-content: center;
+			transition: opacity .4s ease;
+		}
+
+		#evt-close-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: #e3e1e1;
+			padding: 6px 12px;
+			display: none;
+			color: white;
+			border-radius: 20px;
+			opacity: 0;
+			transition: opacity .4s ease, background .4s ease, color .4s ease;
+			border: 2px solid #CACACA;
+		}
+
+		#evt-close-btn:hover {
+			background: #CACACA;
+			color: black;
+		}
+
+		.evt-info.open #evt-close-btn {
+			display: flex;
+			opacity: 1;
+			transition: opacity .4s ease;
+		}
+
+		#evt-info_v {
+			display: none;
+		}
+
+		#evt-info_h {
+			display: block;
+		}
+
+		.evt-info .evt-information img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		#evt-close-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: gray;
+			padding: 6px 12px;
+			color: white;
+			border-radius: 20px;
+		}
+
+		#evt-video_cel {
+			display: none;
+			position: relative;
+			width: 100%;
+			height: auto;
+		}
+
+		#evt-video_tablet {
+			display: none;
+			position: relative;
+			width: 100%;
+			height: auto;
+		}
+
+		.evt-info .evt-information {
+			height: 90%;
+			width: auto;
+		}
+
+		@media (max-width: 767px) {
+			#evt-info_h {
+				display: none;
+			}
+
+			#evt-info_v {
+				display: block;
+			}
+
+			#evt-video_cel {
+				display: none;
+			}
+
+			#evt-video_tablet {
+				display: block;
+			}
+
+			#evt-video {
+				display: none;
+			}
+
+			.evt-videoContainer video#evt-video_tablet {
+				object-fit: fill;
+				width: 100%;
+			}
+
+			#evt-banner_right {
+				display: none;
+			}
+
+			#evt-link_right {
+				display: none;
+			}
+
+			.evt-banner_left {
+				left: 22.3%;
+				width: 10.4%;
+			}
+
+			.evt-central-pos {
+				width: 40.8%;
+				height: 16.6%;
+				top: 53.9%;
+				left: 51%;
+			}
+
+			.evt-left-pos {
+				width: 33%;
+				height: 13.4%;
+				top: 54.8%;
+				left: .4%;
+			}
+
+			.evt-video-central {
+				width: 40.9%;
+				height: 17.4%;
+				top: 27.4%;
+				left: 51.3%;
+			}
+
+			.evt-left-sponsor {
+				width: 15%;
+				top: 5.6%;
+				height: 15%;
+				right: 29.5%;
+			}
+
+			.evt-right-sponsor {
+				width: 15%;
+				height: 15%;
+				top: 5.8%;
+				left: 74%;
+			}
+
+			.evt-icon {
+				width: 6.5%;
+				height: 4.4%;
+				left: 16%;
+				bottom: 8.3%;
+			}
+
+			.evt-letrero.izq {
+				left: 4.4%;
+				width: 25%;
+				height: 31%;
+				top: 11.2%;
+			}
+		}
+
+		/* MEDIA QUERY PARA VERSIÓN MOBILE */
+		@media (max-width: 576px) {
+
+			#evt-video_cel {
+				display: block;
+			}
+
+			#evt-video_tablet {
+				display: none;
+			}
+
+			.evt-videoContainer video#evt-video_cel {
+				object-fit: fill;
+				width: 100%;
+			}
+
+			#evt-banner_left {
+				display: none;
+			}
+
+			#evt-link_left {
+				display: none;
+			}
+
+			.evt-central-pos {
+				width: 65.2%;
+				height: 16.4%;
+				top: 54%;
+				left: 16%;
+			}
+
+			.evt-video-central {
+				width: 66.5%;
+				height: 17.7%;
+				top: 27.2%;
+				left: 16.3%;
+			}
+
+			.evt-left-sponsor {
+				width: 25%;
+				top: 6.4%;
+				height: 15%;
+				right: 52.3%;
+			}
+
+			.evt-right-sponsor {
+				width: 25%;
+				height: 15%;
+				top: 6.4%;
+				left: 53%;
+			}
+
+			.evt-icon {
+				left: 14%;
+				bottom: 9.6%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="evt-container">
+		<div class="evt-videoContainer">
+			<!-- VIDEO ESCENARIO PRINCIPAL VERSION DESKTOP
+			PERMITE FORMATOS MP4 , .WebM, .OVG, TAMBIÉN HIPERVINCULOS -->
+			<video loop autoplay="" title="Video principal" id="evt-video" width="100%" height="auto" muted="">
+				<source src="./video/background.mp4" type="video/mp4">
+			</video>
+
+			<!-- VIDEO ESCENARIO PRINCIPAL VERSION MOBILE
+			PERMITE FORMATOS MP4 , .WebM, .OVG, TAMBIÉN HIPERVINCULOS -->
+			<video loop autoplay="" title="Video principal" id="evt-video_cel" width="100%" height="auto" muted="">
+				<source src="./video/background_cel.mp4" type="video/mp4">
+			</video>
+
+			<!-- VIDEO ESCENARIO PRINCIPAL VERSION TABLET
+			PERMITE FORMATOS MP4 , .WebM, .OVG, TAMBIÉN HIPERVINCULOS  -->
+			<video loop autoplay="" title="Video principal" id="evt-video_tablet" width="100%" height="auto" muted="">
+				<source src="./video/background_tablet.mp4" type="video/mp4">
+			</video>
+
+			<!-- BANNER DE LA IZQUIERDA -->
+			<!-- ESTA IMÁGEN SE COMPORTA SEGÚN DIMENCIONES DE LA PANTALLA Y EL TIPO DE DISPOSITIVO-->
+			<a href="https://live.eventtia.com/en/eventtia-fest" id="evt-banner_left" title="Banner uno"
+				class="evt-abs evt-letrero evt-izq">
+				<img src="./img/img3000_2000.jpg" alt="Banner Left" class="evt-banner-img">
+			</a>
+			<!-- BANNER DE LA DERECHA -->
+			<!-- ESTA IMÁGEN SE COMPORTA SEGÚN DIMENCIONES DE LA PANTALLA Y EL TIPO DE DISPOSITIVO -->
+			<a href="#?module=Workshops" id="evt-banner_right" title="Banner dos" class="evt-abs evt-letrero evt-der">
+				<img src="./img/banner_right.png" alt="Banner Right" class="evt-banner-img">
+			</a>
+
+			<!-- VIDEO CENTRAL SE COMPORTA SEGÚN DIMENCIONES DE LA PANTALLA Y EL TIPO DE DISPOSITIVO -->
+			<div id="evt-video_central" class="evt-abs evt-video-central">
+				<video width="100%" height="100%" controls>
+					<source
+						src="https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6b/Test.ogv/Test.ogv.240p.vp9.webm"
+						type="video/mp4">
+				</video>
+			</div>
+
+			<!-- EL VÍNCULO PARA EL VS ES EL NOMBRE DEL MÓDULO LA QUE SE QUIERE RE DIRIGIR, ESTE VALOR 
+				 INICALMENTE SE TIENE QUE CONFIGURAR EN EL HTML -->
+
+			<!-- CHIKMENEA IZQUIERDA-->
+			<a id="evt-link_center" title="Visitar VIRTUAL STAGE" href="https://virtual-stage.eventtia.com/es/0df4/home??module=Speakers"
+				class="evt-abs evt-links evt-central-pos">
+				<span>VIRTUAL STAGE</span>
+			</a>
+			<!-- CHIMENEA CENTRAL -->
+			<a id="evt-link_left" title="Visitar SPEAKERS" href="https://virtual-stage.eventtia.com/es/0df4/home??module=Speakers"
+				class="evt-abs evt-links evt-left-pos">
+				<span>SPEAKERS</span>
+			</a>
+			<!-- CHIMENEA DERECHA -->
+			<p id="evt-link_right" title="Visitar SPONSORS" onclick="window.parent.location.href = 'https://virtual-stage.eventtia.com/es/0df4/home?module=Speakers'"
+				class="evt-abs evt-links evt-right-pos">
+				<span>SPONSORS</span>
+			</p>
+
+			<!-- PROYECTOR DEL LA PARTE SUPERIOR-->
+
+			<div id="evt-sponsor_left" class="evt-abs evt-left-sponsor">
+				<img src="./img/img3000_2000.jpg" alt="Sponsor Left Logo">
+			</div>
+
+			<div id="evt-sponsor_r" class="evt-abs evt-right-sponsor">
+				<img src="./img/img3000_2000.jpg" alt="Sponsor Rigth Logo">
+			</div>
+
+
+
+			<div id="evt-info_button" onclick="document.getElementById('evt-info').classList.add('open');"
+				class="evt-abs evt-icon">
+				<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle"
+					class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 512 512">
+					<path fill="currentColor"
+						d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
+					</path>
+				</svg>
+			</div>
+			<!-- -->
+			<audio id="evt-bg_audio" autoplay="" loop>
+				<source src="./audio/background_sound.mp3" type="audio/mpeg">
+			</audio>
+		</div>
+
+		<div id="evt-info" class="evt-info">
+			<div class="evt-information">
+				<img src="./img/information.png" id="info_h" alt="Information">
+				<img src="./img/information_vertical.png" id="info_v" alt="Information">
+			</div>
+			<div id="evt-close-btn" onclick="document.getElementById('evt-info').classList.remove('open')">
+				Cerrar
+			</div>
+		</div>
+		<div id="evt-controls">
+			<div class="evt-audiobtn" onclick="document.getElementById('evt-bg_audio').play()"><svg aria-hidden="true"
+					focusable="false" data-prefix="fas" data-icon="play" class="svg-inline--fa fa-play fa-w-14"
+					role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+					<path fill="currentColor"
+						d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z">
+					</path>
+				</svg></div>
+			<div class="evt-audiobtn" onclick="document.getElementById('evt-bg_audio').pause()"><svg aria-hidden="true"
+					focusable="false" data-prefix="fas" data-icon="pause" class="svg-inline--fa fa-pause fa-w-14"
+					role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+					<path fill="currentColor"
+						d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z">
+					</path>
+				</svg></div>
+			<!-- <div class="audiobtn" onclick="document.getElementById('evt-bg_audio').muted=!document.getElementById('evt-bg_audio').muted"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-mute" class="svg-inline--fa fa-volume-mute fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zM461.64 256l45.64-45.64c6.3-6.3 6.3-16.52 0-22.82l-22.82-22.82c-6.3-6.3-16.52-6.3-22.82 0L416 210.36l-45.64-45.64c-6.3-6.3-16.52-6.3-22.82 0l-22.82 22.82c-6.3 6.3-6.3 16.52 0 22.82L370.36 256l-45.63 45.63c-6.3 6.3-6.3 16.52 0 22.82l22.82 22.82c6.3 6.3 16.52 6.3 22.82 0L416 301.64l45.64 45.64c6.3 6.3 16.52 6.3 22.82 0l22.82-22.82c6.3-6.3 6.3-16.52 0-22.82L461.64 256z"></path></svg></div> -->
+		</div>
+	</div>
+	<script>
+	</script>
+</body>
+
+</html>
