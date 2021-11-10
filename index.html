@@ -136,7 +136,7 @@
 		.evt-right-pos {
 			width: 14.1%;
 			height: 13.5%;
-			top: 54.8%;
+			top: 52.5%;
 			right: 20.3%;
 		}
 
@@ -182,7 +182,7 @@
 		.evt-icon {
 			width: 2.6%;
 			height: 4.4%;
-			left: 27.5%;
+			left: 20.5%;
 			bottom: 8.2%;
 		}
 
@@ -536,12 +536,12 @@
 				 INICALMENTE SE TIENE QUE CONFIGURAR EN EL HTML -->
 
 			<!-- CHIKMENEA IZQUIERDA-->
-			<a id="evt-link_center" title="Visitar VIRTUAL STAGE" href="https://virtual-stage.eventtia.com/es/0df4/home??module=Speakers"
+			<a id="evt-link_center" title="Visitar VIRTUAL STAGE" onclick="window.parent.location.href = 'https://virtual-stage.eventtia.com/es/0df4/home?module=Speakers'"
 				class="evt-abs evt-links evt-central-pos">
 				<span>VIRTUAL STAGE</span>
 			</a>
 			<!-- CHIMENEA CENTRAL -->
-			<a id="evt-link_left" title="Visitar SPEAKERS" href="https://virtual-stage.eventtia.com/es/0df4/home??module=Speakers"
+			<a id="evt-link_left" title="Visitar SPEAKERS" onclick="window.parent.location.href = 'https://virtual-stage.eventtia.com/es/0df4/home?module=Speakers'"
 				class="evt-abs evt-links evt-left-pos">
 				<span>SPEAKERS</span>
 			</a>
@@ -555,11 +555,11 @@
 
 			<!-- IMAGENES FONDO BLANCO -->
 			<div id="evt-sponsor_left" class="evt-abs evt-left-sponsor">
-				<img src="./img/luig.jpg" alt="Sponsor Left Logo">
+				<img style="width: 90%; height: 80%;"src="./img/luig.jpg" alt="Sponsor Left Logo">
 			</div>
 
 			<div id="evt-sponsor_r" class="evt-abs evt-right-sponsor">
-				<img src="./img/yoshi.jpg" alt="Sponsor Rigth Logo">
+				<img style="width: 90%; height: 80%;" src="./img/yoshi.jpg" alt="Sponsor Rigth Logo">
 			</div>
 
 
@@ -569,9 +569,10 @@
 				<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle"
 					class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 512 512">
-					<path fill="currentColor"
-						d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
-					</path>
+					<img style="width: 400%; height: 100%" src="./img/eventtia.png" alt="">
+					<!-- <path fill="currentColor"
+						d="M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 C 1 5 2 6 3 6 C 2 7 3 7 4 8 M 10 1 L 10 3 L 12 3 L 10.2 2.8 L 10 1">
+					</path> -->
 				</svg>
 			</div>
 			<audio id="evt-bg_audio" autoplay="" loop>
@@ -581,8 +582,8 @@
 		<!-- POPUP DE LA INFORMACIÓN GENERAL -->
 		<div id="evt-info" class="evt-info">
 			<div class="evt-information">
-				<img src="./img/information.png" id="info_h" alt="Information">
-				<img src="./img/information_vertical.png" id="info_v" alt="Information">
+				<img src="./img/Halo_4_Masterchief.jpg" id="info_h" alt="Information">
+				<!-- <img src="./img/information_vertical.png" id="info_v" alt="Information"> -->
 			</div>
 			<!-- BOTÓN PARA CERRAR EL POPUP-->
 			<div id="evt-close-btn" onclick="document.getElementById('evt-info').classList.remove('open')">
